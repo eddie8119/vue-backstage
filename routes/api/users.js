@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const gravatar = require("gravatar");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
-const User = require("../../models/User");
+const User = require("../../models/User"); //引入User
 const passport = require("passport");
 
 router.post("/register", (req, res) => {
