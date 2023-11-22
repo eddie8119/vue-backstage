@@ -55,7 +55,8 @@ router.post("/login", (req, res) => {
       console.log(isMatch);
       if (isMatch) {
         const { id, name, avatar, identity } = user;
-        const rule = { id, name, avatar, identity };
+        const rule = { id, name, avatar, identity }; //定規則
+        // 生成jwttoken
         jwt.sign(rule, keys.secretOrkey, { expiresIn: 3600 }, (err, token) => {
           if (err) throw err;
           res.json({
