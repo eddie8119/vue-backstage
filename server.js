@@ -5,6 +5,7 @@ const passport = require("passport");
 const app = express();
 
 const users = require("./routes/api/users");
+const profiles = require("./routes/api/profiles");
 
 const db = require("./config/keys").mongoURL;
 
@@ -23,7 +24,9 @@ app.use(passport.initialize());
 require("./config/passport")(passport); //技巧: 把passport對象傳入 就不用在此寫程式 抽離程式
 
 app.get("/", (req, res) => {});
+// 使用routes
 app.use("/api/users", users);
+app.use("/api/profiles", profiles);
 
 const port = process.env.PORT || 5000;
 
