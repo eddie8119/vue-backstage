@@ -47,9 +47,10 @@ router.post("/login", (req, res) => {
   User.findOne({ email }).then((user) => {
     console.log(user);
     if (!user) {
-      return res.status(404).json("用戶不存在");
+      return res.status(404).json({ email: "用戶不存在" });
     }
 
+    // 密碼匹配
     bcrypt.compare(password, user.password).then((isMatch) => {
       console.log(isMatch);
       if (isMatch) {
@@ -63,7 +64,7 @@ router.post("/login", (req, res) => {
           });
         });
       } else {
-        return res.status(400).json("密碼錯誤");
+        return res.status(400).json({ password: "密碼錯誤" });
       }
     });
   });
