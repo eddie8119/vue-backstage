@@ -20,7 +20,7 @@ mongoose
 // passport初始化
 app.use(passport.initialize());
 
-require("./config/passport")(passport);
+require("./config/passport")(passport); //技巧: 把passport對象傳入 就不用在此寫程式 抽離程式
 
 app.get("/", (req, res) => {});
 app.use("/api/users", users);

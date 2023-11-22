@@ -73,7 +73,7 @@ router.post("/login", (req, res) => {
 
 router.get(
   "/current",
-  passport.authenticate("jwt", { session: false }),
+  passport.authenticate("jwt", { session: false }), //用passport 驗證token
   (req, res) => {
     const { id, name, email, identity } = req.user;
     res.json({ id, name, email, identity });

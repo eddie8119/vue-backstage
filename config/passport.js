@@ -16,7 +16,7 @@ module.exports = (passport) => {
       User.findById({ id })
         .then((user) => {
           if (user) {
-            return doen(null, user);
+            return doen(null, user); //返回user
           }
           return doen(null, false);
         })
