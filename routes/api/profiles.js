@@ -58,4 +58,34 @@ router.get(
   }
 );
 
+router.post(
+  "/edit/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const profileFields = {};
+    if (type) profileFields.type = type;
+    if (describe) profileFields.type = describe;
+    if (income) profileFields.type = income;
+    if (expend) profileFields.type = expend;
+    if (cash) profileFields.type = cash;
+    if (remark) profileFields.type = remark;
+
+    Profile.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: profileFields },
+      { new: true }
+    ).then((profile) => res.json(profile));
+  }
+);
+
+router.delete(
+  "/delete/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findByIdAndRemove({ _id: req.params.id })
+      .then((profile) => profile.save().then((profile) => res.json(profile)))
+      .catch((err) => res.status(404).json("刪除失敗"));
+  }
+);
+
 module.exports = router;
